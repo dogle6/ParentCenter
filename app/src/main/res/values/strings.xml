@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Parent Center</string>
+
+    // Login page strings
+    <string name="row_app_name">Parent Center</string>
+    <string name="login_editText_username">Username:</string>
+    <string name="login_editText_password">Password:</string>
+    <string name="login_button">Login</string>
+
+    // Home page strings
+    <string name="home_button_schedule">Schedule</string>
+    <string name="home_button_notes">Notes</string>
+    <string name="home_button_chat">Chat</string>
+
+    // Chat page strings
+    <string name="chat_textView_title">Chat</string>
+    <string name="chat_textView_example">Hey Honey!</string>
+    <string name="chat_textView_date">10:11 AM 2/2/2020</string>
+    <string name="chat_textView_example2">Hey!</string>
+    <string name="chat_textView_date2">10:09 AM 2/2/2020</string>
+    <string name="chat_button_home">Home</string>
+
+    // Schedule page strings
+
+    <string name="schedule_textView_title">Schedule</string>
+    <string name="schedule_textView_example">Morning breakfast!</string>
+    <string name="schedule_textView_date">10:11 AM 2/2/2020</string>
+    <string name="schedule_button_home">Home</string>
+
+</resources>
