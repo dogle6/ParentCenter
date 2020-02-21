@@ -7,6 +7,9 @@
     <string name="login_editText_password">Password:</string>
     <string name="login_button">Login</string>
 
+    // Sign-up
+    <string name="sign_button">Sign-Up</string>
+
     // Home page strings
     <string name="home_button_schedule">Schedule</string>
     <string name="home_button_notes">Notes</string>

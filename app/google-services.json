@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "630570787556",
+    "firebase_url": "https://parentcenter-6cada.firebaseio.com",
+    "project_id": "parentcenter-6cada",
+    "storage_bucket": "parentcenter-6cada.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630570787556:android:ef463af97265168ced42f1",
+        "android_client_info": {
+          "package_name": "com.example.mobiledevelopmentproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630570787556-oub84gh9touiigjoprbqckk2h7akvg1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBeYkNk0ieTWKlJ8E0mReb73rH6PERj-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630570787556-oub84gh9touiigjoprbqckk2h7akvg1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

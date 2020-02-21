@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="ParentCenter_dark_grey">#353535</color>
-    <color name="ParentCenter_grey">#D9D9D9</color>
+    <color name="ParentCenter_grey">#8A8A8A</color>
     <color name="ParentCenter_Green">#3C6E71</color>
+    <color name="PC_Blue">#284B63</color>
+    <color name="PC_Shadow">#8112232F</color>
 </resources>
