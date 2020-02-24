@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
+import android.nfc.Tag;
 import android.text.TextUtils;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
@@ -22,11 +23,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,8 +63,10 @@ public class MainActivity extends AppCompatActivity {
         progressbar = (ProgressBar) findViewById(R.id.login_progressbar);
         status = (TextView) findViewById(R.id.login_textView_status);
 
-        //Firebase Initialization
+        //FirebaseAuth Initialization
         mAuth = FirebaseAuth.getInstance();
+
+
 
         login.setOnClickListener(clickListener);
         signUp.setOnClickListener(clickListener);
@@ -66,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             int i = v.getId();
             if( i == R.id.login_button){
-                signIn(username.getText().toString(), password.getText().toString() );
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                signIn(username.getText().toString(), password.getText().toString(), db );
             }
             if( i == R.id.login_textView_signUp){
                 createAccount( username.getText().toString(), password.getText().toString() );
@@ -114,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private  void signIn( String email, String password){
+    private  void signIn(final String email, String password, final FirebaseFirestore db){
         Log.d("DEBUG", "signIn: " + email);
         if( !validateForm() ){
             return;
@@ -128,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("DEGBUG", "signInWithEmail: success");
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user);
+                    getUserDate(db, email);
+                    // TODO: Switch intent to home page
+
                 } else{
                     // If sign in fails, display a failure message to the user
                     Log.w("ERROR", "signInWithEmail: failure");
@@ -165,8 +186,6 @@ public class MainActivity extends AppCompatActivity {
 
         return valid;
     }
-
-    // https://github.com/firebase/quickstart-android/blob/995be41782f84b3c54e41d7d7e5d3a5048fe329e/auth/app/src/main/java/com/google/firebase/quickstart/auth/java/EmailPasswordActivity.java#L75-L81
     private void updateUI(FirebaseUser user) {
         progressbar.setVisibility(View.INVISIBLE);
         if (user != null) {
@@ -176,7 +195,51 @@ public class MainActivity extends AppCompatActivity {
             status.setText("");
         }
     }
+    private void getUserDate(final FirebaseFirestore db, final String username ){
+        final String TAG = "getUserData";
+        boolean userFound = false;
+        db.collection("Users").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if( task.isSuccessful() ){
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                if( document.getId().equals(username) ){
+                                    return;
+                                }
+                            }
+                            addUserToFirestore(db, username);
+                        }
+                    }
+                });
 
+
+    }
+    private void addUserToFirestore(FirebaseFirestore db, String username) {
+        final String TAG = "addUserToFirestore";
+        Log.d(TAG, "Adding new " + username + " to user collection");
+
+        // Hash map of account creation date
+        Map<String, Object> userCreation = new HashMap<>();
+        Date date = new Date();
+        userCreation.put("Created", date.toString() );
+
+        // Variable for collection's document storage
+        Map<String, Object> noteExample = new HashMap<>();
+        noteExample.put("Example", "Hello, welcome to Parent Center!");
+
+        Map<String, Object> scheduleExample = new HashMap<>();
+        scheduleExample.put("Example", "Hello, welcome to Parent Center!");
+
+        // Setting up structure of firestore instance
+        db.collection("Users").document(username).set(userCreation);
+        db.collection("Users").document(username).collection("Notes").document("Example Note").set(noteExample);
+        db.collection("Users").document(username).collection("Schedule").document("Example Instance").set(scheduleExample);
+
+
+
+    }
 
 
 }
