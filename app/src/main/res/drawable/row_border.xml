@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item android:bottom="2dp" android:top="2dp">
+                <shape>
+                    <solid android:color="@color/PC_Blue"/>
+                </shape>
+            </item>
+            <item android:bottom="2dp" android:top="2dp" android:left="0dp" android:right="0dp">
+                <shape>
+                    <stroke android:width="1dp" android:color="@color/PC_White" />
+
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

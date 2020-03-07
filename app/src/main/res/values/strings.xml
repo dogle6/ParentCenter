@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Parent Center</string>
+    <string name="app_name"></string>
 
     // Login page strings
     <string name="row_app_name">Parent Center</string>
@@ -30,4 +30,12 @@
     <string name="schedule_textView_date">10:11 AM 2/2/2020</string>
     <string name="schedule_button_home">Home</string>
 
+    // Notes Strings
+    <string name="action_settings">Settings</string>
+    <string name="whats_in_your_mind">Whats on your mind</string>
+    <string name="share_note">Share Note</string>
+    <string name="delete_notes">Delete Notes</string>
+    <string name="no_notes">No Notes!</string>
+
 </resources>
+
