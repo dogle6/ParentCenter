@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     updateUI(user);
                     getUserDate(db, email);
                     // TODO: Switch intent to home page
+                    //Test
 
                 } else{
                     // If sign in fails, display a failure message to the user
