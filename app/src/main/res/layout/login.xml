@@ -130,7 +130,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/login_row_progressbar"
+            android:id="@+id/login_row_"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

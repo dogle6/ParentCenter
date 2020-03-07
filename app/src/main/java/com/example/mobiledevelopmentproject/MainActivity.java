@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.text.TextUtils;
 import android.widget.MultiAutoCompleteTextView;
@@ -99,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
-    private void createAccount(String email, String password){
-        Log.d("DEBUG", "createAccount(): " + email);
+    private void createAccount(final String email, String password){
+        Log.i("DEBUG", "createAccount(): " + email);
         if( !validateForm() ){
             return;
         }
@@ -108,20 +109,22 @@ public class MainActivity extends AppCompatActivity {
         progressbar.setVisibility(View.VISIBLE); // Show progress bar
 
         // Start to create user
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword( email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("INFO", "createUserWithEmail:success");
+                            Log.i("INFO", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            addUserToFirestore(db, email);
                             Toast.makeText(MainActivity.this, "Account Creation Successful.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("ERROR", "createUserWithEmail:failure", task.getException());
+                            Log.i("ERROR", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Account Creation Failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
@@ -133,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private  void signIn(final String email, String password, final FirebaseFirestore db){
-        Log.d("DEBUG", "signIn: " + email);
+        Log.i("DEBUG", "signIn: " + email);
         if( !validateForm() ){
             return;
         }
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if( task.isSuccessful() ){
                     // Sign in is successful, update UI with signed-in user's information
-                    Log.d("DEGBUG", "signInWithEmail: success");
+                    Log.i("DEGBUG", "signInWithEmail: success");
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user);
                     getUserDate(db, email);
@@ -189,7 +192,9 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         progressbar.setVisibility(View.INVISIBLE);
         if (user != null) {
-            status.setText( user.getEmail() + " is verified: " + user.isEmailVerified() );
+            status.setText( "Login Successful" );
+            Intent intent = new Intent(this, Home.class);
+            startActivity(intent);
 
         } else {
             status.setText("");
@@ -197,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void getUserDate(final FirebaseFirestore db, final String username ){
         final String TAG = "getUserData";
+        Log.i(TAG, "Getting " + username );
         boolean userFound = false;
         db.collection("Users").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -204,11 +210,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if( task.isSuccessful() ){
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.i(TAG, document.getId() + " => " + document.getData());
                                 if( document.getId().equals(username) ){
+                                    Log.i(TAG, username + " found." );
                                     return;
+
                                 }
                             }
+                            Log.i(TAG, username + " NOT found." );
                             addUserToFirestore(db, username);
                         }
                     }
@@ -218,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void addUserToFirestore(FirebaseFirestore db, String username) {
         final String TAG = "addUserToFirestore";
-        Log.d(TAG, "Adding new " + username + " to user collection");
+        Log.i(TAG, "Adding new " + username + " to user collection");
 
         // Hash map of account creation date
         Map<String, Object> userCreation = new HashMap<>();
