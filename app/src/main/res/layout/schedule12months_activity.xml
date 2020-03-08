@@ -4,12 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/PC_Blue"
     android:layout_height="match_parent">
 
     <TableRow
         android:id="@+id/tableRow"
         android:layout_width="412dp"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="1dp"
@@ -23,7 +24,7 @@
             android:id="@+id/textView"
             android:layout_width="412dp"
             android:layout_height="100dp"
-            android:text="@string/Logo_text"
+            android:background="@drawable/header"
             android:textSize="50sp" />
     </TableRow>
 
@@ -44,17 +45,20 @@
             android:id="@+id/m3_button"
             android:layout_width="137dp"
             android:layout_height="50dp"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/age_button1" />
 
         <Button
             android:id="@+id/m6_button"
             android:layout_width="137dp"
             android:layout_height="50dp"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/age_button2" />
 
         <Button
             android:id="@+id/m12_button"
             android:layout_width="137dp"
+            android:backgroundTint="@color/PC_White"
             android:layout_height="50dp"
             android:text="@string/age_button3" />
     </TableRow>
@@ -76,12 +80,14 @@
             android:id="@+id/C19_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/breakfast_button_12" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="309dp"
             android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
             android:text="@string/breakfast_TV_12"
             android:textSize="20sp" />
     </TableRow>
@@ -103,12 +109,14 @@
             android:id="@+id/C20_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/nap1_button_12" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="309dp"
             android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
             android:text="@string/nap1_TV_12"
             android:textSize="20sp" />
     </TableRow>
@@ -130,12 +138,14 @@
             android:id="@+id/C21_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/lunch_button_12" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="309dp"
             android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
             android:text="@string/lunch_TV_12"
             android:textSize="20sp" />
     </TableRow>
@@ -157,11 +167,13 @@
             android:id="@+id/C22_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/nap2_button_12" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="309dp"
+            android:textColor="@color/PC_White"
             android:layout_height="match_parent"
             android:text="@string/nap2_TV_12"
             android:textSize="20sp" />
@@ -184,12 +196,14 @@
             android:id="@+id/C23_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/snack1_button_12" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="309dp"
             android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
             android:text="@string/snack1_TV_12"
             android:textSize="20sp" />
     </TableRow>
@@ -211,12 +225,14 @@
             android:id="@+id/C24_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/snack2_button_12" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="309dp"
             android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
             android:text="@string/snack2_TV_12"
             android:textSize="20sp" />
     </TableRow>
@@ -238,12 +254,14 @@
             android:id="@+id/C25_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/dinner_button_12" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="309dp"
             android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
             android:text="@string/dinner_TV_12"
             android:textSize="20sp" />
     </TableRow>
@@ -265,12 +283,14 @@
             android:id="@+id/C26_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/bath_button_12" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="309dp"
             android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
             android:text="@string/bath_TV_12"
             android:textSize="20sp" />
     </TableRow>
@@ -292,12 +312,14 @@
             android:id="@+id/C27_button"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/bed_button_12" />
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="309dp"
             android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
             android:text="@string/bed_TV_12"
             android:textSize="20sp" />
     </TableRow>
@@ -318,6 +340,7 @@
             android:id="@+id/home_button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/schedule_homeButton" />
     </TableRow>
 
