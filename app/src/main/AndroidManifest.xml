@@ -29,8 +29,8 @@
         <!--Schedule Activity-->
         <activity android:label="0-3 Months" android:name=".Schedule3months">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

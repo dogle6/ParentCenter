@@ -48,7 +48,7 @@ public class Home extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_button_schedule:
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, Schedule3months.class);
                 startActivity(intent);
                 break;
             case R.id.home_button_sign_out:

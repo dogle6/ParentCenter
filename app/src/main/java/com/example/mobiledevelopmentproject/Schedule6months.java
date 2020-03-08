@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class Schedule6months extends MainActivity {
+public class Schedule6months extends Home {
 
     Button m3_button, m6_button, m12_button, home_button;
     Button C10_button, C11_button, C12_button, C13_button, C14_button, C15_button, C16_button, C17_button, C18_button;
