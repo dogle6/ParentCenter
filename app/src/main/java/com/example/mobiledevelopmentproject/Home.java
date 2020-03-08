@@ -2,6 +2,7 @@ package com.example.mobiledevelopmentproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobiledevelopmentproject.db.NotesDB;
+import com.example.mobiledevelopmentproject.db.NotesDao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,6 +23,7 @@ public class Home extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private ImageButton schedule, signout, notes, camera;
+    private NotesDao dao;
 
 
     @Override
@@ -82,7 +86,10 @@ public class Home extends AppCompatActivity {
     //TODO: Remove local data on sign-out
     private void signOut(){
         mAuth.signOut();
+        dao = NotesDB.getInstance(this).notesDao();
+        dao.deleteNotes();
         updateUI(null);
+
     }
 
 }

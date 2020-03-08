@@ -15,6 +15,9 @@ public class Note {
     @PrimaryKey(autoGenerate = true)
     private int id; // default value
 
+    @ColumnInfo(name = "FBID")
+    private String FBID;
+
     @ColumnInfo(name = "text")
     private String noteText;
 
@@ -28,9 +31,11 @@ public class Note {
     public Note() {
     }
 
-    public Note(String noteText, long noteDate) {
+    public Note(String noteText, long noteDate, int id, String fbId) {
         this.noteText = noteText;
         this.noteDate = noteDate;
+        this.id = id;
+        this.FBID = fbId;
     }
 
     public String getNoteText() {
@@ -40,6 +45,13 @@ public class Note {
     public void setNoteText(String noteText) {
         this.noteText = noteText;
     }
+
+
+    public String getFBID() {
+        return FBID;
+    }
+    public void setFBID( String fbid) { this.FBID = fbid; }
+
 
     public long getNoteDate() {
         return noteDate;

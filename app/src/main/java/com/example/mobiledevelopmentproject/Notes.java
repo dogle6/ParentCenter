@@ -26,6 +26,8 @@ import com.example.mobiledevelopmentproject.model.Note;
 import com.example.mobiledevelopmentproject.utils.NoteUtils;
 import com.example.mobiledevelopmentproject.callbacks.NoteEventListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -129,6 +131,7 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if( task.isSuccessful() ){
+                            int count = 0;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.i(TAG, document.getId() + " => " + document.getData());
 
@@ -151,8 +154,9 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
                                 }
                                 // If not document instance is not found in doa, store it.
                                 if( !found ){
-
-                                    Note temp = new Note(documentData, date);
+                                    count = count + 1;
+                                    String FBID = document.getId();
+                                    Note temp = new Note(documentData, date, count, FBID );
                                     dao.insertNote(temp);
                                 }
                             }
@@ -200,7 +204,9 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
     @Override
     protected void onResume() {
         super.onResume();
-
+        final FirebaseFirestore db = FirebaseFirestore.getInstance(); // Firebase
+        FirebaseUser currentUser = mAuth.getCurrentUser(); // Firebase User
+        getNotesForUser(currentUser.getEmail().toString(), db);
         loadNotes();
     }
 
@@ -265,7 +271,23 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
         actionModeCallback.setCount(chackedCount + "/" + notes.size());
     }
 
+    public void removeNoteFromUser(String email, String id, FirebaseFirestore db){
+        db.collection("Users").document(email).collection("Notes").document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
 
+    }
 
     private void onDeleteMultiNotes() {
 
@@ -292,6 +314,10 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
     }
 
     private void swipeToDelete(final Note swipedNote, final RecyclerView.ViewHolder viewHolder) {
+
+        final FirebaseFirestore db = FirebaseFirestore.getInstance(); // Firebase
+        final FirebaseUser currentUser = mAuth.getCurrentUser(); // Firebase User
+
         new AlertDialog.Builder(Notes.this)
                 .setMessage("Delete Note?")
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
@@ -299,6 +325,8 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dao.deleteNote(swipedNote);
                         notes.remove(swipedNote);
+                        Log.i( "Delete", String.valueOf(swipedNote.getId()) );
+                        removeNoteFromUser( currentUser.getEmail().toString(), swipedNote.getFBID(), db );
                         adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
                         showEmptyView();
 
