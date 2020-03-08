@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Parent Center</string>
 
     // Login page strings
     <string name="row_app_name">Parent Center</string>
@@ -36,6 +36,11 @@
     <string name="share_note">Share Note</string>
     <string name="delete_notes">Delete Notes</string>
     <string name="no_notes">No Notes!</string>
+
+    // Link Account Strings
+    <string name="link">Link</string>
+    <string name="link_acct">Link Account</string>
+    <string name="link_text">Enter the username of your partner to link accounts</string>
 
 </resources>
 

@@ -9,24 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".LinkAccount"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-       <!--Home Activity-->
+        </activity> <!-- Home Activity -->
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <!--Note Activity-->
+        </activity> <!-- Note Activity -->
         <activity
             android:name=".Notes"
             android:label="@string/app_name"
@@ -40,7 +37,6 @@
         <activity
             android:name=".EditNotes"
             android:parentActivityName=".Notes" />
-
     </application>
 
 </manifest>
