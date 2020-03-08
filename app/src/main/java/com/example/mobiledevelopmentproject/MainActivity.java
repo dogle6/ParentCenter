@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, Home.class);
             Intent linkIntent = new Intent(this, LinkAccount.class);
             linkIntent.putExtra("USERNAME", username.getText().toString());
-            startActivity(linkIntent);
+            startActivity(intent);
 
         } else {
             status.setText("");
