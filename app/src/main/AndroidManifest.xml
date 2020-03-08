@@ -16,14 +16,40 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Home Activity -->
+        </activity>
+
+       <!--Home Activity-->
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- Note Activity -->
+        </activity>
+
+        <!--Schedule Activity-->
+        <activity android:label="0-3 Months" android:name=".Schedule3months">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:label="3-6 Months" android:name=".Schedule6months">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:label="6-12 Months" android:name=".Schedule12months">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <!--Note Activity-->
         <activity
             android:name=".Notes"
             android:label="@string/app_name"
@@ -37,6 +63,18 @@
         <activity
             android:name=".EditNotes"
             android:parentActivityName=".Notes" />
+
+        <!--Note Activity-->
+        <activity
+            android:name=".Schedule"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

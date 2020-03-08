@@ -42,5 +42,72 @@
     <string name="link_acct">Link Account</string>
     <string name="link_text">Enter the username of your partner to link accounts</string>
 
+    // Activity_Schedule 3 month strings
+
+    //Buttons
+    <string name="Logo_text">Logo</string>
+    <string name="age_button1">0-3 Months</string>
+    <string name="age_button2">3-6 Months</string>
+    <string name="age_button3">6-12 Months</string>
+    <string name="breakfast_button_3">7:00</string>
+    <string name="nap1_button_3">9:00</string>
+    <string name="lunch_button_3">11:00</string>
+    <string name="nap2_button_3">1:00</string>
+    <string name="snack1_button_3">3:00</string>
+    <string name="nap3_button_3">4:30</string>
+    <string name="dinner_button_3">6:00</string>
+    <string name="bath_button_3">6:30</string>
+    <string name="bed_button_3">7:00</string>
+    <string name="schedule_homeButton">Home</string>
+
+    //TextViews
+    <string name="breakfast_TV_3">Breakfast (3-6oz formula or milk)</string>
+    <string name="nap1_TV_3">First Nap</string>
+    <string name="lunch_TV_3">Lunch (3-6oz formula/milk)</string>
+    <string name="nap2_TV_3">Second Nap</string>
+    <string name="snack1_TV_3">Snack (3 oz of formula/milk)</string>
+    <string name="nap3_TV_3">Third Nap</string>
+    <string name="dinner_TV_3">Dinner (3-6oz formula/milk)</string>
+    <string name="bath_TV_3">Bath</string>
+    <string name="bed_TV_3">Bed</string>
+
+    //Activity_Schedule 6 month strings
+
+
+    //TextViews
+    <string name="breakfast_TV_6">Breakfast (4-8oz formula/milk)</string>
+    <string name="nap1_TV_6">First Nap</string>
+    <string name="lunch_TV_6">Lunch (4-8oz formula or milk)</string>
+    <string name="nap2_TV_6">Second Nap</string>
+    <string name="snack1_TV_6">Snack (4oz of formula/milk)</string>
+    <string name="nap3_TV_6">Third Nap</string>
+    <string name="dinner_TV_6">Dinner (4-8oz formula/milk)</string>
+    <string name="bath_TV_6">Bath</string>
+    <string name="bed_TV_6">Bed</string>
+
+    //Activity_Schedule 12 month strings
+
+    //Buttons
+    <string name="breakfast_button_12">7:00</string>
+    <string name="nap1_button_12">9:00</string>
+    <string name="lunch_button_12">11:30</string>
+    <string name="nap2_button_12">2:00</string>
+    <string name="snack1_button_12">3:30</string>
+    <string name="snack2_button_12">5:00</string>
+    <string name="dinner_button_12">6:30</string>
+    <string name="bath_button_12">7:30</string>
+    <string name="bed_button_12">8:00</string>
+
+    //TextViews
+    <string name="breakfast_TV_12">Breakfast (6-8oz milk and jar of food)</string>
+    <string name="nap1_TV_12">First Nap</string>
+    <string name="lunch_TV_12">Lunch (6-8oz of milk and jar of food)</string>
+    <string name="nap2_TV_12">Second Nap</string>
+    <string name="snack1_TV_12">Snack 1 (jar of food)</string>
+    <string name="snack2_TV_12">Snack 2 (soft fruit)</string>
+    <string name="dinner_TV_12">Dinner (6-8oz milk and jar of food)</string>
+    <string name="bath_TV_12">Bath</string>
+    <string name="bed_TV_12">Bed</string>
+
 </resources>
 

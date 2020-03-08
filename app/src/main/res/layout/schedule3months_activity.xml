@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/PC_Blue"
+    >
+
+    <TableRow
+        android:id="@+id/tableRow"
+        android:layout_width="412dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="412dp"
+            android:layout_height="100dp"
+            android:background="@drawable/header"
+            android:textSize="50sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/age_tableRow"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow">
+
+        <Button
+            android:id="@+id/m3_button"
+            android:layout_width="137dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="50dp"
+            android:text="@string/age_button1" />
+
+        <Button
+            android:id="@+id/m6_button"
+            android:layout_width="137dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="50dp"
+            android:text="@string/age_button2" />
+
+        <Button
+            android:id="@+id/m12_button"
+            android:layout_width="137dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="50dp"
+            android:text="@string/age_button3" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="412dp"
+
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/age_tableRow">
+
+        <Button
+            android:id="@+id/C1_button"
+            android:layout_width="100dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/breakfast_button_3" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="309dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
+            android:text="@string/breakfast_TV_3"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow2">
+
+        <Button
+            android:id="@+id/C2_button"
+            android:layout_width="100dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/nap1_button_3" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="309dp"
+            android:textColor="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/nap1_TV_3"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow3">
+
+        <Button
+            android:id="@+id/C3_button"
+            android:layout_width="100dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/lunch_button_3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="309dp"
+            android:textColor="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/lunch_TV_3"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow4">
+
+        <Button
+            android:id="@+id/C4_button"
+            android:layout_width="100dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/nap2_button_3" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="309dp"
+            android:textColor="@color/PC_White"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/nap2_TV_3"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow6"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow5">
+
+        <Button
+            android:id="@+id/C5_button"
+            android:backgroundTint="@color/PC_White"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="@string/snack1_button_3" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="309dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
+            android:text="@string/snack1_TV_3"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow7"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow6">
+
+        <Button
+            android:id="@+id/C6_button"
+            android:backgroundTint="@color/PC_White"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="@string/nap3_button_3" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="309dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
+            android:text="@string/nap3_TV_3"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow8"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow7">
+
+        <Button
+            android:id="@+id/C7_button"
+            android:layout_width="100dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/dinner_button_3" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="309dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
+            android:text="@string/dinner_TV_3"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow9"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow8">
+
+        <Button
+            android:id="@+id/C8_button"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/PC_White"
+            android:text="@string/bath_button_3" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="309dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/PC_White"
+            android:text="@string/bath_TV_3"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow10"
+        android:layout_width="412dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow9">
+
+        <Button
+            android:id="@+id/C9_button"
+            android:layout_width="100dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="match_parent"
+            android:text="@string/bed_button_3" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="309dp"
+            android:layout_height="match_parent"
+            android:text="@string/bed_TV_3"
+            android:textColor="@color/PC_White"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="409dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow10">
+
+        <Button
+            android:id="@+id/home_button"
+            android:layout_width="100dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_homeButton" />
+    </TableRow>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
