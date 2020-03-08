@@ -52,8 +52,6 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
         ShakeDetector SD = new ShakeDetector(this);
         SD.start(SM);
 
-        //DocumentReference gc = db.collection("Users").document("graham.caldwell99@gmail.com").collection("Notes").document("Example Note");
-        //gc.update("Example", "Test");
     }
 
     public void onClick(View view) {
