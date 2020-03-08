@@ -89,6 +89,7 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.note_main);
 
+
         // init recyclerView
         recyclerView = findViewById(R.id.notes_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -111,19 +112,18 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
         // Firebase User
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if( currentUser != null){
-            email = currentUser.getEmail().toString();
-            getNotesForUser( email, db );
-
-        }
-
         dao = NotesDB.getInstance(this).notesDao();
+
+
+
 
     }
 
-    private void getNotesForUser(final String email, FirebaseFirestore db){
-        final String TAG = "getNotesForUser";
-        Log.i(TAG, "Email:  " + email );
+    private int getNotesForUser(final String email, FirebaseFirestore db){
+        final String TAG = " myDB getNotesForUser";
+        Log.i("myDB getUserNotes()", "Started." );
+
+        Log.i(TAG, "User:  " + email );
         final long date = new Date().getTime(); // get  system time
 
         db.collection("Users").document(email).collection("Notes").get()
@@ -158,17 +158,24 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
                                     String FBID = document.getId();
                                     Note temp = new Note(documentData, date, count, FBID );
                                     dao.insertNote(temp);
+                                    list = dao.getNotes();
+                                    Log.i("myDB getUserNotes()", "List: " + list.toString());
+
                                 }
+
+                                loadNotes();
                             }
 
-                            // Load notes after updating
-                            loadNotes();
+
                         }
                     }
                 });
 
+        Log.i("myDB getUserNotes()", "Ended." );
+        return 1;
     }
-    private void loadNotes() {
+    public void loadNotes() {
+        Log.i("myDB loadNotes()", "Started.");
         this.notes = new ArrayList<>();
         List<Note> list = dao.getNotes();// get All notes from DataBase
         Log.i("Notes", list.toString());
@@ -181,6 +188,8 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
         // add swipe helper to recyclerView
 
         swipeToDeleteHelper.attachToRecyclerView(recyclerView);
+        Log.i("myDB loadNotes()", "Ended.");
+
     }
 
 
@@ -203,6 +212,7 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
 
     @Override
     protected void onResume() {
+        Log.i("myDB OnResume", "started");
         super.onResume();
         final FirebaseFirestore db = FirebaseFirestore.getInstance(); // Firebase
         FirebaseUser currentUser = mAuth.getCurrentUser(); // Firebase User
