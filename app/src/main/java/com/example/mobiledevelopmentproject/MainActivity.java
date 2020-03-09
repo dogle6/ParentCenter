@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 import android.content.Intent;
+import android.hardware.SensorManager;
 import android.nfc.Tag;
 import android.text.TextUtils;
 import android.widget.MultiAutoCompleteTextView;
@@ -36,6 +37,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.seismic.ShakeDetector;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         login = (ImageButton) findViewById(R.id.login_button);
         progressbar = (ProgressBar) findViewById(R.id.login_progressbar);
         status = (TextView) findViewById(R.id.login_textView_status);
+
 
         //FirebaseAuth Initialization
         mAuth = FirebaseAuth.getInstance();
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             if( i == R.id.login_button){
                 final FirebaseFirestore db = FirebaseFirestore.getInstance();
                 signIn(username.getText().toString(), password.getText().toString(), db );
+
             }
             if( i == R.id.login_textView_signUp){
                 createAccount( username.getText().toString(), password.getText().toString() );
@@ -195,6 +200,8 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
             status.setText( "Login Successful" );
             Intent intent = new Intent(this, Home.class);
+            Intent linkIntent = new Intent(this, LinkAccount.class);
+            linkIntent.putExtra("USERNAME", username.getText().toString());
             startActivity(intent);
 
         } else {
@@ -242,14 +249,21 @@ public class MainActivity extends AppCompatActivity {
         Map<String, Object> scheduleExample = new HashMap<>();
         scheduleExample.put("Example", "Hello, welcome to Parent Center!");
 
+        Map<String, Object> partner = new HashMap<>();
+        partner.put("Partner", null);
+
+        Map<String, Object> linkRequest = new HashMap<>();
+        linkRequest.put("Requested", false);
+
         // Setting up structure of firestore instance
         db.collection("Users").document(username).set(userCreation);
         db.collection("Users").document(username).collection("Notes").document("Example Note").set(noteExample);
         db.collection("Users").document(username).collection("Schedule").document("Example Instance").set(scheduleExample);
-
-
+        db.collection("Users").document(username).collection("Partner").document("Partner").set(partner);
+        db.collection("Users").document(username).collection("Requested").document("Requested").set(linkRequest);
 
     }
+
 
 
 }

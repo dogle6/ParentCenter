@@ -59,4 +59,7 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.0.0'
     implementation 'androidx.paging:paging-runtime:2.0.0'
 
+    //Library used for shake detection
+    implementation 'com.squareup:seismic:1.0.2'
+
 }

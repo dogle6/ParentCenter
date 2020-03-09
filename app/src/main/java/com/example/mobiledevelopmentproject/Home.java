@@ -17,14 +17,20 @@ import com.example.mobiledevelopmentproject.db.NotesDB;
 import com.example.mobiledevelopmentproject.db.NotesDao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class Home extends AppCompatActivity {
+import android.hardware.SensorManager;
+import com.squareup.seismic.ShakeDetector;
+
+
+public class Home extends AppCompatActivity implements ShakeDetector.Listener{
 
     private FirebaseAuth mAuth;
     private ImageButton schedule, signout, notes, camera;
     private NotesDao dao;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,9 @@ public class Home extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         updateUI(user);
 
+        SensorManager SM = (SensorManager) getSystemService(SENSOR_SERVICE);
+        ShakeDetector SD = new ShakeDetector(this);
+        SD.start(SM);
 
     }
 
@@ -92,4 +101,8 @@ public class Home extends AppCompatActivity {
 
     }
 
+    @Override
+    public void hearShake() {
+        Toast.makeText(this, "Shaken", Toast.LENGTH_SHORT).show();
+    }
 }
