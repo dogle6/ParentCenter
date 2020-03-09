@@ -72,8 +72,8 @@ public class Home extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Toast.makeText(Home.this, "Logged In.",
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(Home.this, "Logged In.",
+                    //Toast.LENGTH_SHORT).show();
         } else {
 
             Toast.makeText(Home.this, "Logged Out.",

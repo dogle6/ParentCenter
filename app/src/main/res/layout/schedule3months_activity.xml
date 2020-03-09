@@ -10,7 +10,7 @@
 
     <TableRow
         android:id="@+id/tableRow"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -31,7 +31,7 @@
 
     <TableRow
         android:id="@+id/age_tableRow"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -44,30 +44,29 @@
 
         <Button
             android:id="@+id/m3_button"
-            android:layout_width="137dp"
+            android:layout_width="120dp"
             android:backgroundTint="@color/PC_White"
             android:layout_height="50dp"
             android:text="@string/age_button1" />
 
         <Button
             android:id="@+id/m6_button"
-            android:layout_width="137dp"
+            android:layout_width="120dp"
             android:backgroundTint="@color/PC_White"
             android:layout_height="50dp"
             android:text="@string/age_button2" />
 
         <Button
             android:id="@+id/m12_button"
-            android:layout_width="137dp"
-            android:backgroundTint="@color/PC_White"
+            android:layout_width="120dp"
             android:layout_height="50dp"
+            android:backgroundTint="@color/PC_White"
             android:text="@string/age_button3" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow2"
-        android:layout_width="412dp"
-
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -87,16 +86,17 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="309dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
             android:textColor="@color/PC_White"
             android:text="@string/breakfast_TV_3"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow3"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -111,21 +111,22 @@
             android:id="@+id/C2_button"
             android:layout_width="100dp"
             android:backgroundTint="@color/PC_White"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/nap1_button_3" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="309dp"
+            android:layout_width="match_parent"
             android:textColor="@color/PC_White"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="@string/nap1_TV_3"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow4"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -145,16 +146,17 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="309dp"
+            android:layout_width="match_parent"
             android:textColor="@color/PC_White"
+            android:gravity="center_vertical"
             android:layout_height="match_parent"
             android:text="@string/lunch_TV_3"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow5"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -174,17 +176,18 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="309dp"
+            android:layout_width="match_parent"
             android:textColor="@color/PC_White"
+            android:gravity="center_vertical"
             android:backgroundTint="@color/PC_White"
             android:layout_height="match_parent"
             android:text="@string/nap2_TV_3"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow6"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -204,16 +207,17 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="309dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:textColor="@color/PC_White"
             android:text="@string/snack1_TV_3"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow7"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -233,16 +237,17 @@
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="309dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:textColor="@color/PC_White"
             android:text="@string/nap3_TV_3"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow8"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -262,16 +267,17 @@
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="309dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:textColor="@color/PC_White"
             android:text="@string/dinner_TV_3"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow9"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -291,16 +297,17 @@
 
         <TextView
             android:id="@+id/textView9"
-            android:layout_width="309dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:textColor="@color/PC_White"
             android:text="@string/bath_TV_3"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow10"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -320,15 +327,23 @@
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="309dp"
+            android:layout_width="158dp"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="@string/bed_TV_3"
             android:textColor="@color/PC_White"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
+        <Button
+            android:id="@+id/home_button"
+            android:layout_width="100dp"
+            android:backgroundTint="@color/PC_White"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_homeButton"
+            android:layout_gravity="right"/>
     </TableRow>
 
     <TableRow
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
@@ -339,12 +354,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableRow10">
 
-        <Button
-            android:id="@+id/home_button"
-            android:layout_width="100dp"
-            android:backgroundTint="@color/PC_White"
-            android:layout_height="wrap_content"
-            android:text="@string/schedule_homeButton" />
+
     </TableRow>
 
 

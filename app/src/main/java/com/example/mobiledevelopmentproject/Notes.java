@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.ActionMode;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -58,6 +59,7 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
     private MainActionModeCallback actionModeCallback;
     private int chackedCount = 0;
     private FloatingActionButton fab;
+    private Button button_home;
     private SharedPreferences settings;
     private FirebaseAuth mAuth;
     private String email;
@@ -102,6 +104,8 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
                 onAddNewNote();
             }
         });
+
+        button_home = (Button)findViewById(R.id.home_button);
 
         //FirebaseAuth Initialization
         mAuth = FirebaseAuth.getInstance();
@@ -360,6 +364,16 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
 
         Toast.makeText(this, "" + position, Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    public void onClick (View view){
+        switch (view.getId()) {
+
+            case R.id.button_home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
 

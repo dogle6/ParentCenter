@@ -34,4 +34,15 @@
         android:src="@drawable/ic_add_black_24dp"
         app:backgroundTint="@color/PC_Blue" />
 
+    <Button
+        android:id="@+id/button_home"
+        android:layout_width="wrap_content"
+        android:backgroundTint="@color/PC_Blue"
+        android:onClick="onClick"
+        android:layout_height="wrap_content"
+        android:textColor="@color/PC_White"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:text="Home" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
