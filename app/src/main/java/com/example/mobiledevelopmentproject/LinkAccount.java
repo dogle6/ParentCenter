@@ -40,7 +40,7 @@ public class LinkAccount extends AppCompatActivity {
                 //userPartner.update("Partner", (String)partnerUsername);
                 Log.i("","AAA");
                 Log.i("", partnerName.getText().toString());
-                Log.i("", intent.getStringExtra("USERNAME"));
+                Log.i("", username);
                 //DocumentReference userPartner2 = db2.collection("Users").document(partnerUsername).collection("Partner").document("Partner");
                 //userPartner2.update("Partner", username);
             }
