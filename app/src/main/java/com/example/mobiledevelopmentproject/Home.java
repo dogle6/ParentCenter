@@ -22,6 +22,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import android.hardware.SensorManager;
 import com.squareup.seismic.ShakeDetector;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Home extends AppCompatActivity implements ShakeDetector.Listener{
 
@@ -126,8 +129,8 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
     public void hearShake() {
         Toast.makeText(this, "Shaken", Toast.LENGTH_SHORT).show();
         FirebaseUser user = mAuth.getCurrentUser();
-        String email = user.getEmail();
-        DocumentReference partner = db.collection("Users").document("graham.caldwell96@gmail.com").collection("Partner").document("Partner");
+        String email = user.getEmail().toString();
+        DocumentReference partner = db.collection("Users").document(email).collection("Partner").document("Partner");
 
         partner.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -135,12 +138,23 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.exists()){
                             String partnerName = documentSnapshot.getString("Partner");
+                            Log.i("myDB", partnerName);
+
+                            // Request data to be stored in partner Request doc
+                            Map<String, Object> requestData = new HashMap<>();
+                            requestData.put("Requested",  "true" );
+
                             DocumentReference partnerRequest = db.collection("Users").document(partnerName).collection("Requested").document("Requested");
-                            partnerRequest.update("Requested", true);
-                            Log.i("", "Success");
+                            partnerRequest.set(requestData);
+
+                            Log.i("myDB", "Success");
+                            Toast.makeText(Home.this, "Successful.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                         else{
                             Log.i("", "Failed");
+                            Toast.makeText(Home.this, "Failed.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
