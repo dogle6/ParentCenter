@@ -39,7 +39,7 @@ public class LinkAccount extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        final String email = user.getEmail();
+        final String email = user.getEmail().toLowerCase();
 
         btnLink.setOnClickListener(new View.OnClickListener() {
             @Override

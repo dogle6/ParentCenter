@@ -31,4 +31,10 @@
         <item name="colorPrimaryDark">@color/PC_Blue</item>
 
     </style>
+
+    <style name="editTextWhite">
+        <item name="android:editTextColor">@color/PC_White</item>
+        <item name="android:textColorHint">@color/PC_White</item>
+
+    </style>
 </resources>
