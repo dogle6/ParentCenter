@@ -9,15 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LinkAccount extends AppCompatActivity {
 
-    private FirebaseFirestore db2 = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth;
     private Button btnLink;
     private EditText partnerName;
-     String username, partnerUsername;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,24 +28,21 @@ public class LinkAccount extends AppCompatActivity {
         setContentView(R.layout.activity_link_account);
 
         partnerName = findViewById(R.id.partner_username);
-        partnerUsername = partnerName.getText().toString();
         btnLink = findViewById(R.id.btn_link);
 
-        //Intent intent = getIntent();
-        //username = intent.getStringExtra("USERNAME");
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String email = user.getEmail();
 
         btnLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-                username = intent.getStringExtra("USERNAME");
-                //DocumentReference userPartner = db2.collection("Users").document((String)username).collection("Partner").document("Partner");
-                //userPartner.update("Partner", (String)partnerUsername);
-                Log.i("","AAA");
-                Log.i("", partnerName.getText().toString());
-                Log.i("", username);
-                //DocumentReference userPartner2 = db2.collection("Users").document(partnerUsername).collection("Partner").document("Partner");
-                //userPartner2.update("Partner", username);
+
+                DocumentReference userPartner = db.collection("Users").document(email).collection("Partner").document("Partner");
+                userPartner.update("Partner", partnerName.getText().toString());
+
+                DocumentReference userPartner2 = db.collection("Users").document(partnerName.getText().toString()).collection("Partner").document("Partner");
+                userPartner2.update("Partner", email);
             }
         });
 

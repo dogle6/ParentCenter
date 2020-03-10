@@ -50,7 +50,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private TextView signUp, status;
-    private EditText username, password;
+    public EditText username, password;
     private ImageButton login;
     private FirebaseAuth mAuth;
     private ProgressBar progressbar;
@@ -82,15 +82,15 @@ public class MainActivity extends AppCompatActivity {
         //MUST IMPLEMENT SIGN OUT BUTTON //
     }
 
-
     public View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             int i = v.getId();
+
+
             if( i == R.id.login_button){
                 final FirebaseFirestore db = FirebaseFirestore.getInstance();
                 signIn(username.getText().toString(), password.getText().toString(), db );
-
             }
             if( i == R.id.login_textView_signUp){
                 createAccount( username.getText().toString(), password.getText().toString() );
@@ -153,10 +153,9 @@ public class MainActivity extends AppCompatActivity {
                     // Sign in is successful, update UI with signed-in user's information
                     Log.i("DEGBUG", "signInWithEmail: success");
                     FirebaseUser user = mAuth.getCurrentUser();
+
                     updateUI(user);
                     getUserDate(db, email);
-                    // TODO: Switch intent to home page
-                    // Test Push
 
                 } else{
                     // If sign in fails, display a failure message to the user
@@ -200,8 +199,6 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
             status.setText( "Login Successful" );
             Intent intent = new Intent(this, Home.class);
-            Intent linkIntent = new Intent(this, LinkAccount.class);
-            linkIntent.putExtra("USERNAME", username.getText().toString());
             startActivity(intent);
 
         } else {
