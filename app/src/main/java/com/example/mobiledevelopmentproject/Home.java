@@ -1,6 +1,7 @@
 package com.example.mobiledevelopmentproject;
 
 import android.app.DownloadManager;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobiledevelopmentproject.db.NotesDB;
@@ -17,9 +19,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.hardware.SensorManager;
+
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.squareup.seismic.ShakeDetector;
 
 import java.util.HashMap;
@@ -58,22 +63,34 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
 
         //Checks if partner has shaken phone and opens alert
         String email = user.getEmail();
-        DocumentReference checkRequest = db.collection("Users").document(email).collection("Requested").document("Requested");
-        checkRequest.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.exists()){
-                            boolean requested = documentSnapshot.getBoolean("Requested");
-                            if (requested){
-                                Log.i("", "Alert");
-                            }
-                        }
-                        else{
-                            Log.i("", "Failed");
-                        }
+        final DocumentReference checkRequest = db.collection("Users").document(email).collection("Requested").document("Requested");
+        checkRequest.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if(documentSnapshot.exists()){
+                    boolean requested = documentSnapshot.getBoolean("Requested");
+                    if (requested){
+                        Log.i("", "Alert");
+                        openDialog();
+                        checkRequest.update("Requested",false);
                     }
-                });
+                }
+                else{
+                    Log.i("", "Failed");
+                }
+            }
+        });
+    }
+
+    public void openDialog(){
+        AlertDialog.Builder adb = new AlertDialog.Builder(Home.this);
+        adb.setTitle("Checkup");
+        adb.setMessage("Is everything good?");
+        adb.setNeutralButton("no", null);
+        adb.setPositiveButton("Yes", null);
+        adb.setNegativeButton("Cancel", null);
+        AlertDialog confirmDialog = adb.create();
+        confirmDialog.show();
     }
 
     public void onClick(View view) {
