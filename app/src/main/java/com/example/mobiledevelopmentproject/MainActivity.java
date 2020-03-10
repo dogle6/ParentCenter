@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 signIn(username.getText().toString(), password.getText().toString(), db );
             }
             if( i == R.id.login_textView_signUp){
-                createAccount( username.getText().toString(), password.getText().toString() );
+                createAccount( username.getText().toString().toLowerCase(), password.getText().toString() );
             }
         }
     };
