@@ -86,9 +86,8 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
         AlertDialog.Builder adb = new AlertDialog.Builder(Home.this);
         adb.setTitle("Checkup");
         adb.setMessage("Is everything good?");
-        adb.setNeutralButton("no", null);
+        adb.setNeutralButton("Cancel", null);
         adb.setPositiveButton("Yes", null);
-        adb.setNegativeButton("Cancel", null);
         AlertDialog confirmDialog = adb.create();
         confirmDialog.show();
     }
@@ -159,10 +158,10 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
 
                             // Request data to be stored in partner Request doc
                             Map<String, Object> requestData = new HashMap<>();
-                            requestData.put("Requested",  "true" );
+                            requestData.put("Requested",  true);
 
                             DocumentReference partnerRequest = db.collection("Users").document(partnerName).collection("Requested").document("Requested");
-                            partnerRequest.set(requestData);
+                            partnerRequest.update("Requested", true);
 
                             Log.i("myDB", "Success");
                             Toast.makeText(Home.this, "Successful.",

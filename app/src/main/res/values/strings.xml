@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Parent Center</string>
 
     // Login page strings
     <string name="row_app_name">Parent Center</string>
