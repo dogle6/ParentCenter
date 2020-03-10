@@ -1,23 +1,22 @@
 package com.example.mobiledevelopmentproject;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobiledevelopmentproject.db.NotesDB;
 import com.example.mobiledevelopmentproject.db.NotesDao;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.hardware.SensorManager;
@@ -30,6 +29,7 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
     private ImageButton schedule, signout, notes, camera;
     private NotesDao dao;
 
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -41,17 +41,36 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
         schedule = (ImageButton) findViewById(R.id.home_button_schedule);
         signout = (ImageButton) findViewById(R.id.home_button_sign_out);
         notes = (ImageButton) findViewById(R.id.home_button_notes);
-        camera = (ImageButton) findViewById(R.id.home_button_camera);
+        camera = (ImageButton) findViewById(R.id.home_button_link);
 
         //Firebase Initialization
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         updateUI(user);
 
+        //Used for shake detection
         SensorManager SM = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector SD = new ShakeDetector(this);
         SD.start(SM);
 
+        //Checks if partner has shaken phone and opens alert
+        String email = user.getEmail();
+        DocumentReference checkRequest = db.collection("Users").document(email).collection("Requested").document("Requested");
+        checkRequest.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()){
+                            boolean requested = documentSnapshot.getBoolean("Requested");
+                            if (requested){
+                                Log.i("", "Alert");
+                            }
+                        }
+                        else{
+                            Log.i("", "Failed");
+                        }
+                    }
+                });
     }
 
     public void onClick(View view) {
@@ -60,6 +79,7 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
                 Intent intent = new Intent(this, Schedule3months.class);
                 startActivity(intent);
                 break;
+
             case R.id.home_button_sign_out:
                 signOut();
                 FirebaseUser user = mAuth.getCurrentUser();
@@ -71,8 +91,8 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
                 startActivity(intent);
                 break;
 
-            case R.id.home_button_camera:
-                intent = new Intent(this, MainActivity.class);
+            case R.id.home_button_link:
+                intent = new Intent(this, LinkAccount.class);
                 startActivity(intent);
                 break;
 
@@ -101,8 +121,28 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
 
     }
 
+
     @Override
     public void hearShake() {
         Toast.makeText(this, "Shaken", Toast.LENGTH_SHORT).show();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String email = user.getEmail();
+        DocumentReference partner = db.collection("Users").document("graham.caldwell96@gmail.com").collection("Partner").document("Partner");
+
+        partner.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()){
+                            String partnerName = documentSnapshot.getString("Partner");
+                            DocumentReference partnerRequest = db.collection("Users").document(partnerName).collection("Requested").document("Requested");
+                            partnerRequest.update("Requested", true);
+                            Log.i("", "Success");
+                        }
+                        else{
+                            Log.i("", "Failed");
+                        }
+                    }
+                });
     }
 }
