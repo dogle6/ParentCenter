@@ -216,6 +216,7 @@ public class Notes extends AppCompatActivity implements NoteEventListener, Drawe
 
     @Override
     protected void onResume() {
+        dao.deleteNotes();
         Log.i("myDB OnResume", "started");
         super.onResume();
         final FirebaseFirestore db = FirebaseFirestore.getInstance(); // Firebase

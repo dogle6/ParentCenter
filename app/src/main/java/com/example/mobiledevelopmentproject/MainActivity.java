@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting up structure of firestore instance
         db.collection("Users").document(username).set(userCreation);
-        db.collection("Users").document(username).collection("Notes").document("Example Note").set(noteExample);
+        db.collection("Users").document(username).collection("Notes").document("Note1").set(noteExample);
         db.collection("Users").document(username).collection("Schedule").document("Example Instance").set(scheduleExample);
         db.collection("Users").document(username).collection("Partner").document("Partner").set(partner);
         db.collection("Users").document(username).collection("Requested").document("Requested").set(linkRequest);
