@@ -8,17 +8,18 @@
     tools:context=".LinkAccount">
 
     <EditText
-        style="@style/editTextWhite"
         android:id="@+id/partner_username"
+        style="@style/editTextWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="80dp"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:hint="Username"
-        android:textColor="@color/PC_White"
         android:inputType="text"
+        android:textColor="@color/PC_White"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -38,9 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:layout_marginLeft="116dp"
-        android:textColor="@color/PC_White"
         android:layout_marginTop="26dp"
         android:text="@string/link_acct"
+        android:textColor="@color/PC_White"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,25 +49,25 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:textColor="@color/PC_White"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="9dp"
+        android:layout_width="231dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="68dp"
         android:text="@string/link_text"
+        android:textColor="@color/PC_White"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/partner_username" />
 
     <Button
         android:id="@+id/btn_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="219dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/PC_White"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="104dp"
         android:text="@string/link"
-        app:layout_constraintStart_toEndOf="@+id/partner_username"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_username" />
 </androidx.constraintlayout.widget.ConstraintLayout>
