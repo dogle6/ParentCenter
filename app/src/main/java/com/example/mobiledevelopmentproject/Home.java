@@ -2,6 +2,9 @@ package com.example.mobiledevelopmentproject;
 
 import android.app.DownloadManager;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.mobiledevelopmentproject.db.NotesDB;
 import com.example.mobiledevelopmentproject.db.NotesDao;
@@ -30,6 +35,8 @@ import com.squareup.seismic.ShakeDetector;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.mobiledevelopmentproject.Notify.channel_1_ID;
+
 
 public class Home extends AppCompatActivity implements ShakeDetector.Listener{
 
@@ -37,8 +44,9 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
     private ImageButton schedule, signout, notes, camera;
     private NotesDao dao;
 
-
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private NotificationManagerCompat notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +69,9 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
         ShakeDetector SD = new ShakeDetector(this);
         SD.start(SM);
 
-        //Checks if partner has shaken phone and opens alert
+        notificationManager = NotificationManagerCompat.from(this);
+
+        //Checks if partner has shaken phone and pushes notification
         String email = user.getEmail();
         final DocumentReference checkRequest = db.collection("Users").document(email).collection("Requested").document("Requested");
         checkRequest.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -71,7 +81,7 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
                     boolean requested = documentSnapshot.getBoolean("Requested");
                     if (requested){
                         Log.i("", "Alert");
-                        openDialog();
+                        getNotification();
                         checkRequest.update("Requested",false);
                     }
                 }
@@ -82,14 +92,25 @@ public class Home extends AppCompatActivity implements ShakeDetector.Listener{
         });
     }
 
-    public void openDialog(){
-        AlertDialog.Builder adb = new AlertDialog.Builder(Home.this);
+    //Creates Push Notification
+    public void getNotification(){
+        Notification note = new NotificationCompat.Builder(this, channel_1_ID)
+                .setSmallIcon(R.drawable.header)
+                .setContentTitle("Checkup")
+                .setContentText("Call Me")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+
+        notificationManager.notify(0, note);
+
+        /*AlertDialog.Builder adb = new AlertDialog.Builder(Home.this);
         adb.setTitle("Checkup");
         adb.setMessage("Is everything good?");
         adb.setNeutralButton("Cancel", null);
         adb.setPositiveButton("Yes", null);
         AlertDialog confirmDialog = adb.create();
-        confirmDialog.show();
+        confirmDialog.show();*/
     }
 
     public void onClick(View view) {
