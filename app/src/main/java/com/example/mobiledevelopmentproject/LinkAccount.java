@@ -11,11 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -45,56 +48,87 @@ public class LinkAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Map<String, Object> partnerData = new HashMap<>();
-                partnerData.put("Partner",  partnerName.getText().toString() );
+                Map<String, Object> tempPartnerData = new HashMap<>();
+                tempPartnerData.put("Partner", partnerName.getText().toString());
+                final Map<String, Object> partnerData = tempPartnerData;
 
-                Map<String, Object> myData = new HashMap<>();
-                myData.put("Partner",  email );
+                Map<String, Object> tempMyData = new HashMap<>();
+                tempMyData.put("Partner", email);
+                final Map<String, Object> myData = tempMyData;
 
-                db.collection("Users").document(email).collection("Partner").document("Partner")
-                        .set( partnerData )
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(LinkAccount.this, "Link successful.",
+                // Check if the partner Email actually exists in the firestore
+                db.collection("Users").document(partnerName.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d("myDB", "INFO | Partner User Exists.");
+
+                                // Adding partner data to current user's information
+                                db.collection("Users").document(email).collection("Partner").document("Partner")
+                                        .set(partnerData)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(LinkAccount.this, "Link successful.",
+                                                        Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(LinkAccount.this, "Link unsuccessful.",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                // Adding current user's data to partner information
+                                db.collection("Users").document(partnerName.getText().toString()).collection("Partner").document("Partner")
+                                        .set(myData)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(LinkAccount.this, "Link successful (in partner).",
+                                                        Toast.LENGTH_SHORT).show();
+                                                returnHome();
+
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(LinkAccount.this, "Link unsuccessful.",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
+                            } else {
+                                Log.d("myDB", "ERROR | Partner User Does Not Exist.");
+                                Toast.makeText(LinkAccount.this, "This account does not exist.",
                                         Toast.LENGTH_SHORT).show();
-                                returnHome();
+                            }
+                        } else {
+                            Log.d("myDB", "get failed with ", task.getException());
 
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LinkAccount.this, "Link unsuccessful.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                db.collection("Users").document(partnerName.getText().toString()).collection("Partner").document("Partner")
-                        .set( myData )
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(LinkAccount.this, "Link successful.",
-                                        Toast.LENGTH_SHORT).show();
-                                returnHome();
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LinkAccount.this, "Link unsuccessful.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        }
+                    }
+                });
             }
         });
 
     }
 
-    public void returnHome(){
+    public void returnHome() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+
+
+
+
 }
+
