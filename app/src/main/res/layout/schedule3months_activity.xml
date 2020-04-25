@@ -86,11 +86,10 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:layout_width="309dp"
+            android:layout_height="50dp"
             android:gravity="center_vertical"
-            android:layout_height="wrap_content"
             android:textColor="@color/PC_White"
-            android:text="@string/breakfast_TV_3"
             android:textSize="16sp" />
     </TableRow>
 
@@ -117,10 +116,9 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:textColor="@color/PC_White"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/nap1_TV_3"
+            android:textColor="@color/PC_White"
             android:textSize="16sp" />
     </TableRow>
 
@@ -147,10 +145,9 @@
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:textColor="@color/PC_White"
-            android:gravity="center_vertical"
             android:layout_height="match_parent"
-            android:text="@string/lunch_TV_3"
+            android:gravity="center_vertical"
+            android:textColor="@color/PC_White"
             android:textSize="16sp" />
     </TableRow>
 
@@ -177,11 +174,10 @@
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
-            android:textColor="@color/PC_White"
-            android:gravity="center_vertical"
-            android:backgroundTint="@color/PC_White"
             android:layout_height="match_parent"
-            android:text="@string/nap2_TV_3"
+            android:backgroundTint="@color/PC_White"
+            android:gravity="center_vertical"
+            android:textColor="@color/PC_White"
             android:textSize="16sp" />
     </TableRow>
 
@@ -211,7 +207,6 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:textColor="@color/PC_White"
-            android:text="@string/snack1_TV_3"
             android:textSize="16sp" />
     </TableRow>
 
@@ -241,7 +236,6 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:textColor="@color/PC_White"
-            android:text="@string/nap3_TV_3"
             android:textSize="16sp" />
     </TableRow>
 
@@ -271,7 +265,6 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:textColor="@color/PC_White"
-            android:text="@string/dinner_TV_3"
             android:textSize="16sp" />
     </TableRow>
 
@@ -301,7 +294,6 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:textColor="@color/PC_White"
-            android:text="@string/bath_TV_3"
             android:textSize="16sp" />
     </TableRow>
 
@@ -330,7 +322,6 @@
             android:layout_width="158dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/bed_TV_3"
             android:textColor="@color/PC_White"
             android:textSize="16sp" />
         <Button
